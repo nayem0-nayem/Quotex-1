@@ -1,0 +1,195 @@
+/* Custom styles for Quotex Signal Bot */
+
+/* Root variables for consistent theming */
+:root {
+    --signal-buy-color: 28 149 136; /* Teal for buy signals */
+    --signal-sell-color: 244 67 54; /* Red for sell signals */
+    --confidence-high: 76 175 80; /* Green for high confidence */
+    --confidence-medium: 255 193 7; /* Amber for medium confidence */
+    --confidence-low: 158 158 158; /* Grey for low confidence */
+}
+
+/* Signal cards */
+.signal-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 0.5rem;
+}
+
+.signal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Signal type indicators */
+.signal-buy {
+    border-left: 4px solid rgb(var(--signal-buy-color));
+}
+
+.signal-sell {
+    border-left: 4px solid rgb(var(--signal-sell-color));
+}
+
+/* Confidence indicators */
+.confidence-high {
+    background-color: rgba(var(--confidence-high), 0.1);
+    border-color: rgb(var(--confidence-high));
+}
+
+.confidence-medium {
+    background-color: rgba(var(--confidence-medium), 0.1);
+    border-color: rgb(var(--confidence-medium));
+}
+
+.confidence-low {
+    background-color: rgba(var(--confidence-low), 0.1);
+    border-color: rgb(var(--confidence-low));
+}
+
+/* Performance metrics cards */
+.performance-card {
+    background: var(--bs-card-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.performance-card:hover {
+    border-color: var(--bs-primary);
+    box-shadow: 0 2px 8px rgba(var(--bs-primary-rgb), 0.15);
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--bs-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Status indicators */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.status-active {
+    background-color: rgb(var(--confidence-high));
+    animation: pulse 2s infinite;
+}
+
+.status-inactive {
+    background-color: rgb(var(--confidence-low));
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .signal-card {
+        margin-bottom: 1rem;
+    }
+    
+    .performance-card {
+        margin-bottom: 0.75rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+}
+
+/* Dark theme enhancements */
+[data-bs-theme="dark"] .signal-card {
+    background: var(--bs-dark);
+    border-color: var(--bs-border-color);
+}
+
+[data-bs-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) > td {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Custom button styles */
+.btn-generate {
+    background: linear-gradient(45deg, var(--bs-primary), var(--bs-info));
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-generate:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.3);
+}
+
+.btn-generate:disabled {
+    background: var(--bs-secondary);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Alert enhancements */
+.alert {
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: 500;
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--bs-warning);
+    border-left: 4px solid var(--bs-warning);
+}
+
+/* Empty state styling */
+.empty-state {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--bs-secondary);
+}
+
+.empty-state i {
+    opacity: 0.5;
+    margin-bottom: 1rem;
+}
+
+/* Progress bar styling */
+.progress {
+    background-color: rgba(var(--bs-secondary-rgb), 0.2);
+    border-radius: 1rem;
+}
+
+.progress-bar {
+    border-radius: 1rem;
+    transition: width 0.6s ease;
+}
